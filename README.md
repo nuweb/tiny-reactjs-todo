@@ -6,3 +6,4 @@ To run the app,
   <li><b>npm install</b></li>
   <li><b>npm run dev</b></li>
 </ul>
+Access the app @ http://localhost:9222/
