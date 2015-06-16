@@ -2,5 +2,7 @@
 A barebones ReactJS Todo App
 
 To run the app,
-1. <b>npm install</b>
-2. <b>npm run dev</b>
+<ul>
+  <li><b>npm install</b></li>
+  <li><b>npm run dev</b></li>
+</ul>
