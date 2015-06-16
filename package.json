@@ -1,0 +1,28 @@
+{
+  "name": "tiny-reactjs-todo",
+  "version": "1.0.0",
+  "description": "A tiny reactjs todo app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node_modules/.bin/webpack-dev-server -d",
+    "deploy": "NODE_ENV=production webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuweb/tiny-reactjs-todo.git"
+  },
+  "devDependencies": {
+    "webpack": "^1.8.2",
+    "webpack-dev-server": "^1.8.0"
+  },
+  "keywords": [
+    "reactjs",
+    "todoapp"
+  ],
+  "author": "Chandra Sekhar Veera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuweb/tiny-reactjs-todo/issues"
+  },
+  "homepage": "https://github.com/nuweb/tiny-reactjs-todo"
+}

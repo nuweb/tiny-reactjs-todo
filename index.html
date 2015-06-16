@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tiny ReactJS Todo App</title>
+	<style>
+		body {
+		  padding: 20px;
+		}
+		ul {
+		  list-style: none;
+		  margin: 0 0 20px 0;
+		  padding: 0;
+		}
+		ul li {
+		  padding-bottom: 10px;
+		}
+		.done-true {
+		  text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+	<script type="text/jsx">
+		var todos = [
+		  {text: "Learn Flux", done: false},
+		  {text: "Learn Reactjs",   done: false}
+		];
+
+			// tutorial9.js
+var TodoApp = React.createClass({
+	addTodo: function(e) {
+		console.log(this.refs.todo);
+		var todoTxtInp = React.findDOMNode(this.refs.todo);
+		todos.push({
+		  text: todoTxtInp.value,
+		  done: false
+		});
+		this.setState({todos: todos});
+		todoTxtInp.value = "";
+		e.preventDefault();
+	},
+	clearCompleted: function() {
+		 // remove items from todo
+		todos = todos.filter(function(todo) {
+		  return !todo.done;
+		});
+		this.setState({todos: todos});
+	},
+	getInitialState: function() {
+		return {todos: todos};
+	},
+	render: function() {
+		var todoItems = [];
+		todos.forEach(function(todo, index) {
+			todoItems.push(<TodoListItem keys={index} text={todo.text} done={todo.done} />);
+		});
+	return (
+	  <div className="commentBox">
+	    <h1>Comments</h1>
+	    <ul>{todoItems}</ul>
+		<form>
+	      <input type="text" ref="todo" />
+	      <input type="submit" value="Submit" onClick={this.addTodo} />
+	      &nbsp;<input type="button" value="Clear completed" onClick={this.clearCompleted} />
+	    </form>
+	  </div>
+	);
+	}
+});
+var TodoListItem = React.createClass({
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({className: (nextProps.done) ? "done-true" : "", checked: (nextProps.done) ? "checked" : ""});
+	},
+	todoChecked: function(evt) {
+		//  update the modal
+		todos[this.props.keys].done = (evt.target.checked) ? true : false;
+		//  set the state to strike and check the checkbox
+		this.setState({className: (evt.target.checked) ? "done-true" : "", checked: (evt.target.checked) ? "checked" : ""});
+	},
+	getInitialState: function() {
+		return {className: "", checked: ""};
+	},
+	render: function() {
+		return (
+			<li><input checked={this.state.checked} onChange={this.todoChecked} id={"todo." + this.props.keys} type="checkbox" /> <label className={this.state.className} htmlFor={"todo." + this.props.keys}>{this.props.text}</label></li>
+		);
+	}
+});
+React.render(<TodoApp />, document.body);
+	</script>
+</body>
+</html>
